@@ -10,10 +10,16 @@ export default function BackButton() {
 
   return (
     <button className={styles.backButton} onClick={handleBackToTemplates}>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.backIcon}>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        className={styles.backIcon}
+      >
         <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
-      <span className={styles.backText}>Back to Templates</span>
+      <span className={styles.backText}>Back</span>
     </button>
   );
 }

@@ -4,6 +4,7 @@ import { useBuilder } from "@/hooks/useBuilder";
 import TemplateSelector from "@/components/TemplateSelector";
 import Builder from "@/components/Builder";
 import Header from "@/components/Header";
+import PageSettings from "@/components/PageSettings";
 import "@/styles/App.css";
 
 const AppContent: React.FC = () => {
@@ -12,6 +13,7 @@ const AppContent: React.FC = () => {
   return (
     <div>
       <Header />
+      {selectedTemplate && <PageSettings />}
       {!selectedTemplate ? (
         <TemplateSelector />
       ) : (

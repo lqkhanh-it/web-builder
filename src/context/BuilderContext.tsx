@@ -14,7 +14,7 @@ type BuilderContextType = {
 
 const defaultPageSettings: PageSettings = {
   backgroundColor: "#dde6f7",
-  width: 800,
+  width: 1200,
 };
 
 const BuilderContext = createContext<BuilderContextType | undefined>(undefined);

@@ -13,6 +13,13 @@
   color: #333;
 }
 
+.description {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.5;
+}
+
 .settingsGroup {
   margin-bottom: 1rem;
 }
