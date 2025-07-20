@@ -4,13 +4,18 @@ import { exportToHTML, downloadHTML } from "@/utils/exportUtils";
 import styles from "@/styles/components/ExportButton.module.css";
 
 const ExportButton: React.FC = () => {
-  const { selectedTemplate, pageSettings } = useBuilder();
+  const { selectedTemplate, pageSettings, elementSettings } = useBuilder();
 
-  const handleExport = () => {
+  const handleExport = async () => {
     if (!selectedTemplate) return;
     
-    const html = exportToHTML(selectedTemplate, pageSettings);
-    downloadHTML(html, `${selectedTemplate}-exported.html`);
+    try {
+      const html = await exportToHTML(selectedTemplate, pageSettings, elementSettings);
+      downloadHTML(html, `${selectedTemplate}-exported.html`);
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert('Export failed. Please try again.');
+    }
   };
 
   return (

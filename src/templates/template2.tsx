@@ -3,7 +3,7 @@ import { useTemplateElements } from "@/hooks/useTemplateElements";
 import styles from "@/styles/templates/Template.module.css";
 
 const Template2: React.FC = () => {
-  const { getElementStyle, getElementContent, getElementClassName } = useTemplateElements();
+  const { getElementStyle, getElementContent, getElementClassName, getElementImage } = useTemplateElements();
 
   return (
     <div className={styles.template2}>
@@ -13,7 +13,15 @@ const Template2: React.FC = () => {
             id="image-2"
             className={`${styles.cardImage} ${getElementClassName("image-2", styles.templateElement, styles.selected)}`}
           >
-            <span className={styles.imageText}>🖼️ Card Image</span>
+            {getElementImage("image-2") ? (
+              <img 
+                src={getElementImage("image-2")} 
+                alt="Card image"
+                className={styles.uploadedImage}
+              />
+            ) : (
+              <span className={styles.imageText}>🖼️ Card Image</span>
+            )}
           </div>
           
           <h2 
@@ -38,7 +46,15 @@ const Template2: React.FC = () => {
             id="image-3"
             className={`${styles.cardImageAlt} ${getElementClassName("image-3", styles.templateElement, styles.selected)}`}
           >
-            <span className={styles.imageText}>🎨 Feature Image</span>
+            {getElementImage("image-3") ? (
+              <img 
+                src={getElementImage("image-3")} 
+                alt="Feature image"
+                className={styles.uploadedImage}
+              />
+            ) : (
+              <span className={styles.imageText}>🎨 Feature Image</span>
+            )}
           </div>
           
           <h2 

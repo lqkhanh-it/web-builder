@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useBuilder } from "@/hooks/useBuilder";
 import type { ElementSettings } from "@/templates/types";
 import styles from "@/styles/components/SettingsPanel.module.css";
 import ExportButton from "./ExportButton";
 
 const SettingsPanel: React.FC = () => {
-  const { selectedElement, elementSettings, setElementSettings } = useBuilder();
+  const { selectedElement, elementSettings, setElementSettings, setSelectedElement } = useBuilder();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Default to image element if nothing is selected
+  React.useEffect(() => {
+    if (!selectedElement) {
+      setSelectedElement("image-1");
+    }
+  }, [selectedElement, setSelectedElement]);
 
   const currentElementSettings = selectedElement
     ? elementSettings[selectedElement] || {}
@@ -18,6 +26,21 @@ const SettingsPanel: React.FC = () => {
         ...updates,
       });
     }
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && selectedElement) {
+      const imageUrl = URL.createObjectURL(file);
+      updateElementSettings({
+        imageUrl,
+        imageFile: file,
+      });
+    }
+  };
+
+  const triggerImageUpload = () => {
+    fileInputRef.current?.click();
   };
 
   const renderPageSettings = () => (
@@ -103,6 +126,52 @@ const SettingsPanel: React.FC = () => {
               }
               placeholder="Enter content..."
             />
+          </div>
+        )}
+
+        {elementType === "image" && (
+          <div className={styles.settingsGroup}>
+            <label className={styles.settingsLabel}>Upload Image</label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className={styles.fileInput}
+              style={{ display: 'none' }}
+            />
+            <button
+              className={styles.uploadButton}
+              onClick={triggerImageUpload}
+            >
+              <svg
+                className={styles.uploadIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7,10 12,15 17,10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Choose Image
+            </button>
+            {currentElementSettings.imageUrl && (
+              <div className={styles.imagePreview}>
+                <img
+                  src={currentElementSettings.imageUrl}
+                  alt="Preview"
+                  className={styles.previewImage}
+                />
+                <button
+                  className={styles.removeButton}
+                  onClick={() => updateElementSettings({ imageUrl: undefined, imageFile: undefined })}
+                >
+                  Remove
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

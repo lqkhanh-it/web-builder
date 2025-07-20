@@ -1,13 +1,104 @@
-import type { PageSettings } from "../templates/types";
+import type { PageSettings, ElementSettings } from "../templates/types";
 
-export const exportToHTML = (
+export const exportToHTML = async (
   templateId: string,
-  pageSettings: PageSettings
-): string => {
-  // This is a simplified export - in a real app you'd want to render the actual template
-  // with the applied settings and generate proper HTML
+  pageSettings: PageSettings,
+  elementSettings: Record<string, ElementSettings>
+): Promise<string> => {
+  const getElementStyle = (elementId: string) => {
+    const settings = elementSettings[elementId] || {};
+    return {
+      color: settings.color || '#333',
+      fontSize: settings.fontSize ? `${settings.fontSize}px` : '16px',
+      fontWeight: settings.fontWeight === 'light' ? 300 : 
+                  settings.fontWeight === 'bold' ? 700 : 400,
+    };
+  };
+
+  const getElementContent = (elementId: string, defaultContent: string) => {
+    const settings = elementSettings[elementId] || {};
+    return settings.content || defaultContent;
+  };
+
+  const getElementImage = async (elementId: string): Promise<string | null> => {
+    const settings = elementSettings[elementId] || {};
+    if (!settings.imageUrl || !settings.imageFile) return null;
+    
+    // Convert blob URL to base64 for export
+    try {
+      const response = await fetch(settings.imageUrl);
+      const blob = await response.blob();
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+    } catch (error) {
+      console.error('Error converting image to base64:', error);
+      return null;
+    }
+  };
+
+  const renderTemplateContent = async () => {
+    if (templateId === 'template1') {
+      const image1 = await getElementImage('image-1');
+      const heading1 = getElementContent('heading-1', 'Lorem ipsum dolor sit amet');
+      const paragraph1 = getElementContent('paragraph-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+      const paragraph2 = getElementContent('paragraph-2', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
+      
+      const heading1Style = getElementStyle('heading-1');
+      const paragraph1Style = getElementStyle('paragraph-1');
+      const paragraph2Style = getElementStyle('paragraph-2');
+
+      return `
+        ${image1 ? 
+          `<img src="${image1}" alt="Uploaded content" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 24px;" />` : 
+          `<div class="image-placeholder">📷 Image Placeholder</div>`
+        }
+        <h1 style="font-size: ${heading1Style.fontSize}; font-weight: ${heading1Style.fontWeight}; color: ${heading1Style.color}; margin-bottom: 16px;">${heading1}</h1>
+        <p style="font-size: ${paragraph1Style.fontSize}; font-weight: ${paragraph1Style.fontWeight}; color: ${paragraph1Style.color}; line-height: 1.6; margin-bottom: 16px;">${paragraph1}</p>
+        <p style="font-size: ${paragraph2Style.fontSize}; font-weight: ${paragraph2Style.fontWeight}; color: ${paragraph2Style.color}; line-height: 1.6; margin-bottom: 16px;">${paragraph2}</p>
+      `;
+    } else if (templateId === 'template2') {
+      const image2 = await getElementImage('image-2');
+      const image3 = await getElementImage('image-3');
+      const heading2 = getElementContent('heading-2', 'Card Title');
+      const heading3 = getElementContent('heading-3', 'Feature Section');
+      const paragraph3 = getElementContent('paragraph-3', 'This is a card-based layout with a clean, modern design. Perfect for showcasing products or services.');
+      const paragraph4 = getElementContent('paragraph-4', 'Highlight your key features or benefits in this section. The layout is responsive and works on all devices.');
+      
+      const heading2Style = getElementStyle('heading-2');
+      const heading3Style = getElementStyle('heading-3');
+      const paragraph3Style = getElementStyle('paragraph-3');
+      const paragraph4Style = getElementStyle('paragraph-4');
+
+      return `
+        <div class="card-layout">
+          <div class="card">
+            ${image2 ? 
+              `<img src="${image2}" alt="Card image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 16px;" />` : 
+              `<div class="card-image">🖼️ Card Image</div>`
+            }
+            <h2 style="font-size: ${heading2Style.fontSize}; font-weight: ${heading2Style.fontWeight}; color: ${heading2Style.color}; margin-bottom: 12px;">${heading2}</h2>
+            <p style="font-size: ${paragraph3Style.fontSize}; font-weight: ${paragraph3Style.fontWeight}; color: ${paragraph3Style.color}; line-height: 1.5; margin-bottom: 16px;">${paragraph3}</p>
+          </div>
+          <div class="card">
+            ${image3 ? 
+              `<img src="${image3}" alt="Feature image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 16px;" />` : 
+              `<div class="card-image">🎨 Feature Image</div>`
+            }
+            <h2 style="font-size: ${heading3Style.fontSize}; font-weight: ${heading3Style.fontWeight}; color: ${heading3Style.color}; margin-bottom: 12px;">${heading3}</h2>
+            <p style="font-size: ${paragraph4Style.fontSize}; font-weight: ${paragraph4Style.fontWeight}; color: ${paragraph4Style.color}; line-height: 1.5; margin-bottom: 16px;">${paragraph4}</p>
+          </div>
+        </div>
+      `;
+    }
+    return '';
+  };
   
-  const html = `
+      const templateContent = await renderTemplateContent();
+    
+    const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,25 +182,7 @@ export const exportToHTML = (
 <body>
     <div class="page-container">
         <div class="content">
-            ${templateId === 'template1' ? `
-                <div class="image-placeholder">📷 Image Placeholder</div>
-                <h1>Lorem ipsum dolor sit amet</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            ` : `
-                <div class="card-layout">
-                    <div class="card">
-                        <div class="card-image">🖼️ Card Image</div>
-                        <h2>Card Title</h2>
-                        <p>This is a card-based layout with a clean, modern design. Perfect for showcasing products or services.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-image">🎨 Feature Image</div>
-                        <h2>Feature Section</h2>
-                        <p>Highlight your key features or benefits in this section. The layout is responsive and works on all devices.</p>
-                    </div>
-                </div>
-            `}
+            ${templateContent}
         </div>
     </div>
 </body>

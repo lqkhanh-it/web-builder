@@ -3,7 +3,7 @@ import { useTemplateElements } from "@/hooks/useTemplateElements";
 import styles from "@/styles/templates/Template.module.css";
 
 const Template1: React.FC = () => {
-  const { getElementStyle, getElementContent, getElementClassName } = useTemplateElements();
+  const { getElementStyle, getElementContent, getElementClassName, getElementImage } = useTemplateElements();
 
   return (
     <div className={styles.template1}>
@@ -11,7 +11,15 @@ const Template1: React.FC = () => {
         id="image-1"
         className={`${styles.imagePlaceholder} ${getElementClassName("image-1", styles.templateElement, styles.selected)}`}
       >
-        <span className={styles.imageText}>📷 Image Placeholder</span>
+        {getElementImage("image-1") ? (
+          <img 
+            src={getElementImage("image-1")} 
+            alt="Uploaded content"
+            className={styles.uploadedImage}
+          />
+        ) : (
+          <span className={styles.imageText}>📷 Image Placeholder</span>
+        )}
       </div>
       
       <h1 

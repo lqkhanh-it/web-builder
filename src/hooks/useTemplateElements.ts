@@ -24,10 +24,16 @@ export const useTemplateElements = () => {
     return selectedElement === elementId ? `${baseClass} ${selectedClass}` : baseClass;
   };
 
+  const getElementImage = (elementId: string) => {
+    const settings = elementSettings[elementId] || {};
+    return settings.imageUrl;
+  };
+
   return {
     getElementStyle,
     getElementContent,
     getElementClassName,
+    getElementImage,
     selectedElement,
   };
 }; 

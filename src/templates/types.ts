@@ -14,4 +14,6 @@ export type ElementSettings = {
   fontSize?: number;
   fontWeight?: 'light' | 'regular' | 'bold';
   content?: string;
+  imageUrl?: string;
+  imageFile?: File;
 }; 

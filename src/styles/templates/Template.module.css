@@ -73,6 +73,13 @@
   color: #666;
 }
 
+.uploadedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
 .heading1 {
   font-size: 2rem;
   font-weight: bold;
