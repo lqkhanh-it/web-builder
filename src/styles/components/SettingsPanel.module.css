@@ -1,0 +1,73 @@
+.settingsPanel {
+  width: 320px;
+  background: #fff;
+  border-left: 1px solid #eee;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.settingsGroup {
+  margin-bottom: 16px;
+}
+
+.settingsLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.settingsInput {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.settingsSlider {
+  width: 100%;
+  margin: 8px 0;
+}
+
+.settingsTextarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settingsPanel {
+    width: 100%;
+    height: 300px;
+    border-left: none;
+    border-top: 1px solid #eee;
+  }
+} 

@@ -1,0 +1,26 @@
+.builderContainer {
+  display: flex;
+  height: 100vh;
+}
+
+.builderPreview {
+  flex: 1;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pagePreview {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .builderContainer {
+    flex-direction: column;
+  }
+} 

@@ -1,0 +1,71 @@
+.templateSelector {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+.templateGrid {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.templateCard {
+  width: 200px;
+  height: 150px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.templateCard:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+}
+
+.templateIcon {
+  width: 60px;
+  height: 60px;
+  background: #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.templateName {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.templateDescription {
+  font-size: 12px;
+  color: #6c757d;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .templateGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+} 
