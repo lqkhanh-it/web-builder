@@ -1,11 +1,11 @@
 .templateSelector {
   text-align: center;
-  margin-top: 80px;
+  margin-top: 5rem;
 }
 
 .title {
-  margin-bottom: 40px;
-  font-size: 28px;
+  margin-bottom: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #333;
 }
@@ -13,23 +13,23 @@
 .templateGrid {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  margin-top: 40px;
+  gap: 2rem;
+  margin-top: 2.5rem;
 }
 
 .templateCard {
-  width: 200px;
-  height: 150px;
+  width: 12.5rem;
+  height: 9.375rem;
   background: #f8f9fa;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border: 2px solid transparent;
+  padding: 1rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1);
+  border: 0.125rem solid transparent;
   transition: all 0.2s ease;
 }
 
@@ -39,30 +39,29 @@
 }
 
 .templateIcon {
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
   background: #e9ecef;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
-  font-size: 24px;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
 }
 
 .templateName {
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
   color: #333;
 }
 
 .templateDescription {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #6c757d;
   text-align: center;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .templateGrid {
     flex-direction: column;

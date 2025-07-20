@@ -2,7 +2,6 @@ import React from "react";
 import { useBuilder } from "@/hooks/useBuilder";
 import { templates } from "@/templates";
 import SettingsPanel from "@/components/SettingsPanel";
-import ExportButton from "@/components/ExportButton";
 import styles from "@/styles/components/Builder.module.css";
 
 const Builder: React.FC = () => {
@@ -34,7 +33,6 @@ const Builder: React.FC = () => {
         </div>
       </div>
       <SettingsPanel />
-      <ExportButton />
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React from "react";
 import { useBuilder } from "@/hooks/useBuilder";
 import type { ElementSettings } from "@/templates/types";
 import styles from "@/styles/components/SettingsPanel.module.css";
+import ExportButton from "./ExportButton";
+import BackButton from "./BackButton";
 
 const SettingsPanel: React.FC = () => {
   const { 
@@ -134,7 +136,9 @@ const SettingsPanel: React.FC = () => {
 
   return (
     <div className={styles.settingsPanel}>
+      <BackButton />
       {selectedElement ? renderElementSettings() : renderPageSettings()}
+      <ExportButton />
     </div>
   );
 };

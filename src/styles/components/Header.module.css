@@ -1,0 +1,65 @@
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.logoIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+    height: 3.5rem;
+  }
+  
+  .logoText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoText {
+    font-size: 1rem;
+  }
+} 

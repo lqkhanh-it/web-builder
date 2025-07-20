@@ -1,25 +1,16 @@
 .exportButton {
-  position: fixed;
-  top: 20px;
-  right: 340px;
+  width: 100%;
   background: #000;
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 8px 16px;
+  padding: 16px 24px;
   font-size: 14px;
   cursor: pointer;
-  z-index: 1000;
+  font-weight: 600;
   transition: background-color 0.2s ease;
 }
 
 .exportButton:hover {
   background: #333;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .exportButton {
-    right: 20px;
-  }
-} 
