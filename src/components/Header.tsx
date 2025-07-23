@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ title = "Web Builder" }) => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo} onClick={handleLogoClick}>
-          <Logo className={styles.logoIcon} />
+          <img src="/public/logo.svg" alt="Logo" className={styles.logoIcon} />
           <span className={styles.logoText}>{title}</span>
         </div>
       </div>
