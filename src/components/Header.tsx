@@ -1,7 +1,6 @@
 import React from "react";
 import { useBuilder } from "@/hooks/useBuilder";
 import styles from "@/styles/components/Header.module.css";
-import Logo from "@/assets/logo";
 
 interface HeaderProps {
   title?: string;
